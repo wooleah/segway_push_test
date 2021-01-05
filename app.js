@@ -9,16 +9,33 @@ app.use(bodyParser.urlencoded({
   
 app.get("/", function(req, res) { 
   res.sendFile(__dirname + "/index.html"); 
-}); 
+});
+
+const pushEndpoint = '/v2/vehicle';
+const successObj = {        
+  message:'success',
+  code: 0
+};
   
-app.post("/", function(req, res) { 
-  var num1 = Number(req.body.num1); 
-  var num2 = Number(req.body.num2); 
-    
-  var result = num1 + num2 ; 
-    
-  res.send("Addition - " + result); 
-}); 
+app.post(`${pushEndpoint}/alert`, function(req, res) { 
+  console.log(req.body);
+  res.send(successObj);
+});
+
+app.post(`${pushEndpoint}/fault`, function(req, res) { 
+  console.log(req.body);
+  res.send(successObj);
+});
+
+app.post(`${pushEndpoint}/location`, function(req, res) { 
+  console.log(req.body);
+  res.send(successObj);
+});
+
+app.post(`${pushEndpoint}/status`, function(req, res) { 
+  console.log(req.body);
+  res.send(successObj);
+});
   
 app.listen(3000, function(){ 
   console.log("server is running on port 3000"); 
